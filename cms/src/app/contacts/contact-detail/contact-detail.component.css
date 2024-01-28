@@ -7,3 +7,9 @@
 .contact-image {
     max-height: 190px;
 }
+.contact-detail-name {
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}

@@ -5,17 +5,17 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="pull-left">
-                            <h4 class="panel-title"></h4>
+                            <h4 class="panel-title contact-detail-name">{{ contact.name }}</h4>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
                         <span class="pull-left">
-                            <!-- <img
-                            src=""
-                            alt="{ contact.name }"
-                            class="img-responsive contact-image"> -->
+                            <img
+                            src="{{ contact.imageUrl }}"
+                            alt="{{ contact.name }}"
+                            class="img-responsive contact-image">
                         </span>
                     </div>
                     <div class="col-xs-6">
@@ -29,8 +29,8 @@
             <div class="panel-body">
                 <div class="list-group-item clearfix">
                     <div class="pull-left">
-                        <p><strong>Email:</strong> </p>
-                        <p><strong>Phone:</strong> </p>
+                        <p><strong>Email: {{ contact.email }}</strong> </p>
+                        <p><strong>Phone: {{ contact.phone }}</strong> </p>
                     </div>
                 </div>
             </div>
