@@ -11,7 +11,7 @@ export class ContactDetailComponent {
   @Input() contact: Contact;
   contacts: Contact[] = [
     new Contact(
-      0,
+      "",
       "",
       "",
       "",
