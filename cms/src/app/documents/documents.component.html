@@ -5,11 +5,9 @@
   </div>
 
   <div class="col-md-4">
-    <cms-document-detail
-      *ngIf="selectedDocument; else infoText"
-      [document]="selectedDocument"></cms-document-detail>
-      <ng-template #infoText>
-        <p>Please select a document to view details</p>
+    <router-outlet></router-outlet>
+    <ng-template #infoText>
+      <p>Please select a document to view details</p>
     </ng-template>
   </div>
 </div>
