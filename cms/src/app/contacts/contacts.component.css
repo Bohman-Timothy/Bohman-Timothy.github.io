@@ -1,6 +1,6 @@
 /* Based on code shared by Aaron Picker in the W05 Developer Forum */
 @media screen and (min-width: 992px) {
-    cms-contact-detail {
+    .contact-detail {
         position: fixed;
         top: 50%;
         left: 70%;

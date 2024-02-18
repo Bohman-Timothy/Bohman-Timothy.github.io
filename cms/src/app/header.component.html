@@ -8,16 +8,16 @@
         </div>
         <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class="nav navbar-nav">
-                <li><a href="#" (click)="onSelected('documents')">Documents</a></li>
-                <li><a href="#" (click)="onSelected('messages')">Messages</a></li>
-                <li><a href="#" (click)="onSelected('contacts')">Contacts</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['documents']">Documents</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['messages']">Messages</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['contacts']">Contacts</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" cmsDropdown>
-                    <a href="#" class="dropdown-toggle" role="button">User <span class="caret"></span></a>
+                    <a class="dropdown-toggle" role="button">User <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Save Data</a></li>
-                        <li><a href="#">Fetch Data</a></li>
+                        <li><a [routerLink]="">Save Data</a></li>
+                        <li><a [routerLink]="">Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>

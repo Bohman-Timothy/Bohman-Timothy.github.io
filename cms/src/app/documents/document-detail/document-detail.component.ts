@@ -1,6 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Document } from '../document.model';
+import { DocumentService } from '../document.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { WindRefService } from '../../wind-ref.service';
 
 @Component({
   selector: 'cms-document-detail',
@@ -8,7 +12,7 @@ import { Document } from '../document.model';
   styleUrl: './document-detail.component.css'
 })
 export class DocumentDetailComponent {
-  @Input() document: Document;
+  document: Document;
   documents: Document[] = [
     new Document(
       "",
@@ -17,4 +21,35 @@ export class DocumentDetailComponent {
       ""
     )
   ]
+  id: string;
+  paramsSubscription: Subscription;
+  nativeWindow: any;
+  
+  constructor(private documentService: DocumentService,
+    private windRefService: WindRefService,
+    private router: Router,
+    private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
+    this.paramsSubscription = this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = params['id'];
+          this.document = this.documentService.getDocument(this.id);
+        }
+      );
+    this.nativeWindow = this.windRefService.getNativeWindow();
+  }
+
+  onView() {
+    if(this.document.url) {
+      this.nativeWindow.open(this.document.url);
+    }
+  }
+
+  onDelete() {
+    this.documentService.deleteDocument(this.document);
+    this.router.navigate(['/documents']);
+  }
 }

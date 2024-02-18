@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { Document } from '../../document.model';
 
 @Component({
@@ -9,6 +11,9 @@ import { Document } from '../../document.model';
 export class DocumentItemComponent {
   @Input() document: Document;
   @Output() documentSelected = new EventEmitter<void>();
+  id: String;
+  
+  constructor(private route: ActivatedRoute) { }
 
   onSelected() {
     this.documentSelected.emit();
