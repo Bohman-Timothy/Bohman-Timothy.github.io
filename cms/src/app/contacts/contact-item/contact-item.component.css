@@ -1,0 +1,8 @@
+.contact-name {
+    font-size: 2.5rem;
+    position: absolute;
+    top: 35%;
+}
+.contact-image {
+    max-height: 80px;
+}
