@@ -33,6 +33,6 @@
 
 /* Based on code shared by Julie Spackman in the W08 Developer Forum */
 .drop-area {
-    height: 30vh;
+    height: 42vh;
     overflow-y: auto;
 }

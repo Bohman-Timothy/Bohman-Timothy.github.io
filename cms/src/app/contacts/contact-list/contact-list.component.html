@@ -1,28 +1,49 @@
 <div class="row">
-    <div class="col-xs-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <h1 class="panel-title text-left">Contacts</h1>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="pull-right">
-                            <a class="btn btn-success" [routerLink]="['new']">New Contact</a>
-                        </div>
-                    </div>
+                  <span class="title pad-left-right">Contacts</span>
                 </div>
-            </div>
-            <div class="panel-body contact-list-vertical-scrollbar">
-                <div cdkDropList
-                    [cdkDropListData]="contacts">
-                    <cms-contact-item
-                        *ngFor="let contact of contacts"
-                        [contact]="contact"
-                        cdkDrag
-                        [cdkDragData]="contact"></cms-contact-item>
+                <div class="row">
+                  <div class="input-group pull-left pad-left-right col-xs-7">
+                    <input
+                      #searchBox
+                      class="form-control"
+                      name="search-term"
+                      (keyup)="search(searchBox.value)"
+                      placeholder="Enter a search value"
+                    >
+                    <div
+                      class="glyphicon glyphicon-search input-group-addon"
+                      (click)="search(searchBox.value)"
+                    ></div>
+                  </div>
+                  <div class="pull-right pad-left-right">
+                    <a class="btn btn-success" [routerLink]="['new']"
+                      >New Contact</a
+                    >
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="panel-body contact-list-vertical-scrollbar">
+        <div cdkDropList [cdkDropListData]="contacts">
+          <cms-contact-item
+            *ngFor="let contact of contacts | contactsFilter : term"
+            [contact]="contact"
+            cdkDrag
+            [cdkDragData]="contact"
+          ></cms-contact-item>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
