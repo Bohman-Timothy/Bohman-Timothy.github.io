@@ -5,14 +5,53 @@ var http = require("http");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var mongoose = require('mongoose');
 
 // import the routing file to handle the default (index) route
 var index = require("./server/routes/app");
+
+// ... ADD CODE TO IMPORT YOUR ROUTING FILES HERE ...
 const messageRoutes = require('./server/routes/messages');
 const contactRoutes = require('./server/routes/contacts');
 const documentsRoutes = require('./server/routes/documents');
 
-// ... ADD CODE TO IMPORT YOUR ROUTING FILES HERE ...
+// Use an environment variable for the URL string to connect to the database
+const dotEnv = require('dotenv').config();
+const uri = process.env.DB_URL;
+
+// establish a connection to the mongo database
+
+/*
+establish a connection to the mongo database
+// errors out like:
+// ... mongoose.js:398
+//    throw new MongooseError('Mongoose.prototype.connect() no longer accepts a callback');
+mongoose.connect(uri,
+   { useNewUrlParser: true }, (err, res) => {
+      if (err) {
+         console.log('Connection failed: ' + err);
+      }
+      else {
+         console.log('Connected to database!');
+      }
+   }
+);
+*/
+
+// from https://mongoosejs.com/docs/connections.html
+// mongoose.connection.on('connected', () => console.log('Connected to database!'));
+// mongoose.connect(uri)
+//   .catch(error => {
+//     console.log('Connection failed: ' + error);
+//   });
+  
+try {
+  mongoose.connect(uri);
+  console.log('Connected to database!');
+}
+catch(err) {
+  console.log('Connection failed: ' + err);
+}
 
 var app = express(); // create an instance of express
 
@@ -47,11 +86,11 @@ app.use(express.static(path.join(__dirname, "dist/cms/browser")));
 
 // Tell express to map the default route ('/') to the index route
 app.use("/", index);
+
+// ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
 app.use('/messages', messageRoutes);
 app.use('/contacts', contactRoutes);
 app.use('/documents', documentsRoutes);
-
-// ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
 
 // Tell express to map all other non-defined routes back to the index page
 // catch 404 and forward to error handler
